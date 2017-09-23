@@ -16,4 +16,3 @@ RUN set -xe \
   && echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
   && apk add --no-cache curl coreutils numactl-tools \
   && curl -L https://downloads.getmonero.org/cli/linux64 | tar --strip-components=2 -C /usr/bin -jxvf -
-

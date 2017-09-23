@@ -7,13 +7,18 @@ docker-monero        [![Docker Stars](https://img.shields.io/docker/stars/raboo/
 # Pulling
     docker pull raboo/monero
 
+# Initial blockchain sync/bootstrap
+    wget https://downloads.getmonero.org/blockchain.raw
+    mkdir -p $HOME/.bitmonero/export
+    mv blockchain.raw $HOME/.bitmonero/export/
+    docker run -it --rm -v $HOME/.bitmonero:/root/.bitmonero \
+        raboo/monero monero-blockchain-import --db-salvage
 
 # Running the Daemon
     docker run -dit --name monero \
         -v $HOME/.bitmonero:/root/.bitmonero \
         -p 18080:18080 -p 18081:18081 \
         raboo/monero
-
 
 # Checking the container status
     docker logs monero
@@ -22,7 +27,6 @@ docker-monero        [![Docker Stars](https://img.shields.io/docker/stars/raboo/
         -d '{"jsonrpc":"2.0","id":"test","method":"get_info"}' \
         -H "Content-Type: application/json" \
         -H "Accept:application/json"
-
 
 # Using the wallet
 
